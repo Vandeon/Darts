@@ -2,13 +2,19 @@ package games;
 
 import java.util.Scanner;
 
+import config.Constants;
+
 public class GameTenTurns {
 
-	private String rules = "Two players are throwing 3 darts 2 times suborder.";
+	private String rules = Constants.RULE_TEN_TURNS;
 	
 	private int playerOneScore = 0;
 	
 	private int playerTwoScore = 0;
+	
+	private String firstPlayer = "First player";
+	
+	private String secondPlayer = "Second player";
 	
 	public GameTenTurns () {} 
 	
@@ -16,26 +22,41 @@ public class GameTenTurns {
 		System.out.println(rules);
 	}
 	
+	public void setFirstPlayer(String firstPlayer) {;
+		if(firstPlayer.length() != 0) this.firstPlayer = firstPlayer;
+	}
+
+	public void setSecondPlayer(String secondPlayer) {
+		if(firstPlayer.length() != 0) this.secondPlayer = secondPlayer;
+	}
+
 	public void start(Scanner sc) {
 		int step = 0;
-		System.out.println("First player starts!");
+		System.out.println("The game is started. Good luck!");
 		
 		while(step < 10) {
-			System.out.println("First player first 3 darts summary");
+			System.out.println(firstPlayer + Constants.FIRST_SUMMARY);
 			playerOneScore += sc.nextInt();
-			System.out.println("First player second 3 darts summary");
+			System.out.println(firstPlayer + Constants.SECOND_SUMMARY);
 			playerOneScore += sc.nextInt();
 			step++;
 
-			System.out.println("Second player first 3 darts summary");
+			System.out.println(secondPlayer + Constants.FIRST_SUMMARY);
 			playerTwoScore += sc.nextInt();
-			System.out.println("Second player second 3 darts summary");
+			System.out.println(secondPlayer + Constants.SECOND_SUMMARY);
 			playerTwoScore += sc.nextInt();
 			step++;
+			
+			System.out.println(firstPlayer + ": " + playerOneScore);
+			System.out.println(secondPlayer + ": " + playerTwoScore);
 		}
-		if(playerOneScore > playerTwoScore) System.out.println("First player wins!");
-		else if(playerOneScore < playerTwoScore) System.out.println("First player wins!");
+		
+		if(playerOneScore > playerTwoScore) System.out.println(firstPlayer + " wins!");
+		else if(playerOneScore < playerTwoScore) System.out.println(secondPlayer + " wins!");
 		else System.out.println("Friendship wins!");
+
+		playerOneScore = 0;
+		playerTwoScore = 0;
 	}
 	
 }
